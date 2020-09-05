@@ -1,10 +1,10 @@
 {
-  "name": "useTranslation",
+  "name": "use-translation",
   "version": "1.0.0",
   "description": "A React Hook for Language Translation",
   "main": "./lib/index.js",
   "repository": "https://github.com/Jamyth/useTranslation.git",
-  "author": "Jamyth <jamyth@jcstudio.hk>",
+  "author": "jamyth",
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^16.9.49",
