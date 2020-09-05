@@ -12,6 +12,8 @@ export interface TranslationContextProps {
   changeLanguage: (lang: string) => void;
 }
 
-declare const TranslationProvider: FC<TranslationProviderProps>;
+export declare const TranslationProvider: FC<TranslationProviderProps>;
+
+export declare const useTranslate: () => TranslationContextProps;
 
 export default TranslationProvider;
