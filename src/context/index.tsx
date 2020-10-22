@@ -15,7 +15,7 @@ export const TranslationContext = createContext<TranslationContextProps>(
 );
 
 export const TranslationProvider = ({
-  initialLanguage,
+  initialLanguage = "en",
   translation,
   children,
   fonts,
@@ -37,25 +37,28 @@ export const TranslationProvider = ({
 
   const changeLanguage = (language: string) => {
     setLanguage(language);
+    setGlobalFont();
     localStorage.reactLang = language;
   };
 
-  useEffect(() => {
-    const language = localStorage.reactLang;
-    if (!language) {
+  const setGlobalFont = () => {
+    let newFont = fonts?.[language];
+    if (!newFont) {
       return;
     }
-    setLanguage(language);
-  }, []);
+    const classList = document.body.classList;
+    if (font && classList.contains(font)) {
+      classList.remove(font);
+    }
+    classList.add(newFont);
+    setFont(newFont);
+  };
 
   useEffect(() => {
-    if (fonts) {
-      let newFont = fonts?.[language];
-      document.body.classList.remove(font);
-      document.body.classList.add(newFont);
-      setFont(newFont);
-    }
-  }, [language]);
+    const language = localStorage.reactLang || initialLanguage;
+    setLanguage(language);
+    setGlobalFont();
+  }, []);
 
   return (
     <TranslationContext.Provider
