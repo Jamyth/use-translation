@@ -38,7 +38,7 @@ export const TranslationProvider = ({
   const changeLanguage = (language: string) => {
     setLanguage(language);
     setGlobalFont();
-    localStorage.reactLang = language;
+    localStorage.setItem("reactLang", language);
   };
 
   const setGlobalFont = () => {
@@ -55,9 +55,8 @@ export const TranslationProvider = ({
   };
 
   useEffect(() => {
-    const language = localStorage.reactLang || initialLanguage;
-    setLanguage(language);
-    setGlobalFont();
+    const language = localStorage.getItem("reactLang") || initialLanguage;
+    changeLanguage(language);
   }, []);
 
   return (
