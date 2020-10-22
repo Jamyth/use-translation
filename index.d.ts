@@ -1,9 +1,18 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode } from "react";
+
+export interface Translation {
+  [key: string]: Dictionary;
+}
+
+export interface Dictionary {
+  [id: string]: string;
+}
 
 export interface TranslationProviderProps {
   initialLanguage?: string;
-  translation: any;
+  translation: Translation;
   children: ReactNode;
+  fonts?: { [key: string]: string };
 }
 
 export interface TranslationContextProps {

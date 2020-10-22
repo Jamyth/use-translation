@@ -8,6 +8,7 @@ Feature Includes:
 - Support [TypeScript](https://www.typescriptlang.org/) with complete definition file
 - Easy to write your own Translations for multi-languages
 - Easy to attach to any React Components
+- Support Font toggling
 
 # Installation and Usage
 
@@ -36,6 +37,30 @@ const TRANSLATION = {
 
 Then use it in your app:
 
+#### Add Your Font File
+
+We only accept className as value;
+
+```
+const FONT = {
+  // key: className
+  en: 'roboto',
+  zh: 'sans-serif'
+}
+```
+
+### Add Your Font Class in CSS / SASS / LESS / more
+
+```
+.roboto {
+  font-family: roboto, sans-serif !important;
+}
+
+.sans-serif {
+  font-family: sans-serif !important;
+}
+```
+
 #### At your root component:
 
 ```
@@ -44,9 +69,12 @@ import { TranslationProvider, useTranslate } from 'use-translation';
 
 import TRANSLATION from 'translation/file';
 
+import FONTS from 'translation/font';
+import './path/to/font/css/file.scss/.less/.css';
+
 export const MyApp = () => {
   return (
-    <TranslationProvider translation={TRANSLATION}>
+    <TranslationProvider fonts={FONTS} translation={TRANSLATION}>
       <App />
     </TranslationProvider>
   )

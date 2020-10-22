@@ -1,23 +1,27 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { TranslationContextProps, TranslationProviderProps } from '../../index';
+import { TranslationContextProps, TranslationProviderProps } from "../../index";
 
 const { createContext, useState, useEffect } = React;
 
 const initialState: TranslationContextProps = {
-  language: '',
-  translate: () => '',
+  language: "",
+  translate: () => "",
   changeLanguage: () => {},
 };
 
-export const TranslationContext = createContext<TranslationContextProps>(initialState);
+export const TranslationContext = createContext<TranslationContextProps>(
+  initialState
+);
 
 export const TranslationProvider = ({
   initialLanguage,
   translation,
   children,
+  fonts,
 }: TranslationProviderProps) => {
-  const [language, setLanguage] = useState(initialLanguage ?? '');
+  const [language, setLanguage] = useState(initialLanguage ?? "");
+  const [font, setFont] = useState("");
 
   const translate = (id: string) => {
     const languagePack = translation?.[language];
@@ -43,6 +47,15 @@ export const TranslationProvider = ({
     }
     setLanguage(language);
   }, []);
+
+  useEffect(() => {
+    if (fonts) {
+      let newFont = fonts?.[language];
+      document.body.classList.remove(font);
+      document.body.classList.add(newFont);
+      setFont(newFont);
+    }
+  }, [language]);
 
   return (
     <TranslationContext.Provider
