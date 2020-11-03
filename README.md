@@ -1,4 +1,4 @@
-# React -- use-translation
+# use-translation -- ([React](https://reactjs.com))
 
 A Language Translation for [React](https://reactjs.com).
 
